@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!-- Testimonial Start -->
+<style>
+  .testimonial-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    justify-items: center;
+  }
+
+  .small-input {
+    width: 100%;
+    height: 25px;
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+  }
+
+  label {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    font-weight: bold;
+  }
+
+  textarea {
+    width: 1000px;
+    height: 100px;
+    padding: 5px;
+    font-size: 300px;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+</style>
+
+<div class="mt-5">
+  <h3>Add Your Testimonial</h3>
+  <form method="POST" class="testimonial-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="small-input" id="name" name="name" required>
+      {% for error in form.name.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      <label style="margin-right:-40px;" for="profession" class="form-label">Profession</label>
+      <input type="text" class="small-input" id="profession" name="profession" required>
+      {% for error in form.profession.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      <label for="say" class="form-label">Your Comment</label>
+      <textarea class="form-control" id="say" name="say" rows="3" required></textarea>
+      {% for error in form.say.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <input type="file" class="form-control" id="image" name="image">
+      {% for error in form.image.errors %}
+        <div class="error-message">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+   
+
+
+
+
+
+
+
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+      <div class="text-center">
+        <h5 class="section-title ff-secondary text-center text-primary fw-normal">
+          Testimonial
+        </h5>
+        <h1 class="mb-5">Our Clients Say!!!</h1>
+      </div>
+      <div class="owl-carousel testimonial-carousel">
+        {% for c in c %}
+        <div class="testimonial-item bg-transparent border rounded p-4">
+          <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+          
+          <p>
+           {{c.say}}
+          </p>
+          <div class="d-flex align-items-center">
+            {% if c.image %}
+            <img
+              class="img-fluid flex-shrink-0 rounded-circle"
+              src="{{c.image.url}}"
+              style="width: 50px; height: 50px"
+            />
+            {% endif %}
+            <div class="ps-3">
+              <h5 class="mb-1">{{c.name}}</h5>
+              <small> {{c.profession}} </small>
+            </div>
+          </div>
+          
+        </div>
+        {% empty %}
+        <h5>gggg</h5>
+
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- Testimonial End -->
+{% endblock %}

@@ -1,0 +1,67 @@
+ <!-- Navbar & Hero Start -->
+ <div class="container-xxl position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+      <a href="{% url 'res.index' %}" class="navbar-brand p-0">
+        <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Laffah Resturant</h1>
+        <!-- <img src="img/logo.png" alt="Logo"> -->
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+      >
+        <span class="fa fa-bars"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto py-0 pe-4">
+         
+          <a href="{% url 'res.index' %}" class="nav-item nav-link">Home</a>
+          <a href="{% url 'res.about' %}" class="nav-item nav-link">About</a>
+          <a href="{% url 'res.service' %}" class="nav-item nav-link">Service</a>
+          <a href="{% url 'res.menu' %}" class="nav-item nav-link">Menu</a>
+          <a href="{% url 'res.team' %}" class="nav-item nav-link">Our Team</a>
+          <a href="{% url 'res.contact' %}" class="nav-item nav-link">Contact</a>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="navbar-nav ms-auto py-0 pe-4">
+    <div class="nav-item dropdown">
+            
+      <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{user.username}}</a>
+      <div class="dropdown-menu m-0">
+        <a href="{% url 'res.profile' %}" class="dropdown-item">Profile</a>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="dropdown-item">Logout</button>
+      </form>
+      </div>
+    </div>
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mine</a>
+        <div class="dropdown-menu m-0">
+          <a href="{% url 'res.booking' %}" class="dropdown-item">My Books</a>
+          
+          <a href="{% url 'res.testimonial' %}" class="dropdown-item">Testimonial</a>
+        </div>
+      </div>
+      <a href="{% url 'res.reservation' %}" class="btn btn-primary py-2 px-4">Book A Table</a>
+        </div>
+       {% else %}
+      
+       <div class="navbar-nav ms-auto py-0 pe-4">
+         
+        
+        <a href="{% url 'register' %}" class="nav-item nav-link active">Register</a>
+    
+        <a href="{% url 'login' %}" class="nav-item nav-link active">Login</a>
+       
+        {% endif %}
+      </div>
+    </nav>
+      </div>
+     
+    
+    
+
+  <!-- Navbar & Hero End -->

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+ Books
+
+{% for tes in tes %}
+<ul>  
+  <p> 
+Name: {{ tes.name }}</p> 
+<p>
+Email: {{ tes.email }}</p>
+<p>
+People Number: {{ tes.number }}</p>
+<p>
+Date: {{ tes.datetime }}</p>
+<p>
+add: {{ tes.s_r }}</p>
+  
+</ul>
+
+____________________________________________
+
+{% endfor %}
+
+
+{% endblock %}

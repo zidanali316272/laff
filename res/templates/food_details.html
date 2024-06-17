@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+    <div style="text-align: center;">
+        <h1>{{ food.name }}</h1>
+        <img src="{{ food.image.url }}" alt="{{ food.name }}" style="max-width: 25%; height: auto; display: block; margin: 0 auto;">
+        <p>{{ food.description }}</p>
+        <p>Price: {{ food.price }} $</p>
+
+        <h2>Ingredients:</h2>
+        
+        <ul style="text-align: left; display: inline-block; margin: 0 auto;">
+              
+               {{food.ingredient}}
+          
+        </ul>
+        
+    </div>
+{% endblock %}

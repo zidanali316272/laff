@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+ <h1>Profile</h1>
+
+
+<ul>  
+  <p> 
+First Name: {{ p.first_name }}</p>
+<p>
+Last Name:  {{ p.last_name }}   
+</p>   
+<p>
+Username:  {{ p.username }}   
+</p>
+<p>
+Email: {{ p.email }}</p>
+  
+</ul>
+
+____________________________________________
+
+
+
+
+{% endblock %}
